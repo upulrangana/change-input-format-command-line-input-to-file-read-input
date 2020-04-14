@@ -1,16 +1,16 @@
-
 def get_file_path():
     while True:
-        path=str(input("Enter file path(taxtext.txt ) "))
-        # C:\Users\ranga\PycharmProjects\text_input_to_file_read
-        if path=="":
+        # get file path from user
+        path = str(input("Enter file path(taxtext.txt ) "))
+        if path == "":
+            # default file path
             file_path = "./taxtext.txt"
             break
         else:
-            file_path=path
+            file_path = path
             break
-        print(file_path)
     return file_path
+
 
 def get_standard_deduction():
     if filling_status == '1':
@@ -21,6 +21,7 @@ def get_standard_deduction():
         standard_deduction = 18350
 
     return standard_deduction
+
 
 def get_taxes_due(income, standard_deduction):
     income_after_deduction = income - standard_deduction
@@ -41,23 +42,23 @@ def get_taxes_due(income, standard_deduction):
     taxes_due = (income_after_deduction * tax) / 100
     return taxes_due
 
+
 if __name__ == '__main__':
-
-    # getting input from the user...
-
-    while(True):
+    while (True):
         try:
+            # get file path from user
             file_path = get_file_path()
+            # open file arcording to the path
             with open(file_path, 'r') as file:
                 text_file_data = file.read().split('\n')
             break
         except:
-            print("Enter currect file path")
+            # re enter uer path if path is wrong
+            print("You are enter file path is wrong enter currect file path")
             continue
-    # income = get_income()
+    # income value get from file
     income = int(text_file_data[1])
-    # get filling status...
-    # filling_status = get_filling_status()
+    # get filling status from file
     filling_status = str(text_file_data[0])
     # going to get standard deduction...
     standard_deduction = get_standard_deduction()
